@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caitlin Galietti — Author</title>
+
+<!-- Fonts: a spaced serif for the name, a friendly rounded font for body text -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Delius&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   EDIT ME — all colors and sizes live here for easy tweaking
+   ============================================================ */
+:root {
+  --orange:       #E75C1E;   /* main background + accent text          */
+  --orange-deep:  #D94F12;   /* button hover                            */
+  --cream:        #FBF1DE;   /* cards and panels                        */
+  --teal:         #A7D5C6;   /* decorative dashes                       */
+  --ink:          #3A2A1A;   /* dark text on cream                      */
+  --white:        #FFFFFF;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;  /* the big name */
+  --font-body:    "Delius", "Comic Sans MS", cursive;     /* bio text     */
+  --font-ui:      "Nunito", "Segoe UI", sans-serif;       /* buttons      */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--orange);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  position: relative;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 40px 48px 56px;
+  min-height: 100vh;
+}
+
+/* ---------- Header: typewriter + name ---------- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.typewriter { width: 110px; flex-shrink: 0; margin-top: 6px; }
+
+h1.author-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--cream);
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  letter-spacing: 0.35em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+/* ---------- Book card (top right) ---------- */
+.book-card {
+  position: absolute;
+  top: 60px;
+  right: 48px;
+  width: 360px;
+  background: var(--cream);
+  border-radius: 26px;
+  padding: 26px 24px 28px;
+  text-align: center;
+  z-index: 3;
+}
+
+.book-card .cover {
+  width: 210px;
+  height: 175px;
+  margin: 0 auto 10px;
+  display: block;
+  object-fit: contain;
+}
+
+.book-card .book-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+/* ---------- Pill buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 13px 44px;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.btn:hover  { background: var(--orange-deep); }
+.btn:active { transform: scale(0.97); }
+
+/* ---------- Author photo (organic blob shape) ---------- */
+.author-photo {
+  position: absolute;
+  top: 290px;
+  left: 60px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 48% 52% 55% 45% / 50% 46% 54% 50%;
+  z-index: 4;
+}
+
+/* ---------- Bio panel ---------- */
+.bio-panel {
+  position: relative;
+  margin-top: 185px;   /* leaves orange showing between the book card and this panel */
+  margin-left: 48px;
+  background: var(--cream);
+  border-radius: 34px;
+  padding: 130px 90px 56px;
+  text-align: center;
+  z-index: 2;
+}
+
+.bio-panel p {
+  color: var(--orange);
+  font-size: clamp(1.15rem, 2.3vw, 1.7rem);
+  line-height: 1.55;
+  max-width: 980px;
+  margin: 0 auto 40px;
+}
+
+/* ---------- Decorative teal dashes ---------- */
+.dashes { position: absolute; width: 120px; height: auto; z-index: 5; }
+.dashes.left  { left: 18px;  bottom: 190px; }
+.dashes.right { right: 14px; top: 350px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  /* Stack order on small screens: name → photo → bio → book card */
+  .page {
+    padding: 32px 24px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header { flex-direction: column; gap: 12px; order: 1; }
+
+  .author-photo {
+    position: relative;        /* keeps it layered above the bio panel */
+    top: auto; left: auto;
+    display: block;
+    margin: 32px auto -80px;   /* overlap the bio panel below */
+    order: 2;
+  }
+
+  .bio-panel {
+    margin: 0;
+    padding: 110px 28px 44px;
+    order: 3;
+  }
+
+  .book-card {
+    position: static;
+    margin: 40px auto 0;
+    width: min(360px, 100%);
+    order: 4;
+  }
+
+  .dashes { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ======== Header: typewriter illustration + author name ======== -->
+  <header class="header">
+    <!-- Typewriter illustration (inline SVG — swap for your own image if you like) -->
+    <svg class="typewriter" viewBox="0 0 120 90" aria-hidden="true">
+      <!-- flying paper -->
+      <path d="M50 4 L86 8 L82 30 L46 26 Z" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <line x1="53" y1="12" x2="78" y2="15" stroke="#3A2A1A" stroke-width="1.6"/>
+      <line x1="52" y1="18" x2="77" y2="21" stroke="#3A2A1A" stroke-width="1.6"/>
+      <!-- ink specks -->
+      <circle cx="94" cy="6"  r="1.6" fill="#3A2A1A"/>
+      <circle cx="102" cy="14" r="1.6" fill="#3A2A1A"/>
+      <circle cx="97" cy="22" r="1.6" fill="#3A2A1A"/>
+      <circle cx="30" cy="8"  r="1.6" fill="#3A2A1A"/>
+      <circle cx="22" cy="16" r="1.6" fill="#3A2A1A"/>
+      <!-- typewriter body -->
+      <rect x="18" y="34" width="84" height="26" rx="6" fill="#A7D5C6" stroke="#3A2A1A" stroke-width="2.5"/>
+      <rect x="34" y="26" width="52" height="14" rx="4" fill="#A7D5C6" stroke="#3A2A1A" stroke-width="2.5"/>
+      <rect x="40" y="40" width="40" height="8" rx="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <!-- keys -->
+      <circle cx="32" cy="68" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <circle cx="44" cy="70" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <circle cx="56" cy="71" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <circle cx="68" cy="71" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <circle cx="80" cy="70" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <circle cx="92" cy="68" r="3" fill="#FBF1DE" stroke="#3A2A1A" stroke-width="2"/>
+      <!-- base -->
+      <rect x="14" y="58" width="92" height="12" rx="5" fill="#A7D5C6" stroke="#3A2A1A" stroke-width="2.5"/>
+    </svg>
+
+    <h1 class="author-name">Caitlin<br>Galietti</h1>
+  </header>
+
+  <!-- ======== Book card ======== -->
+  <aside class="book-card">
+    <!-- REPLACE the src below with your real book-cover image, e.g. images/adeline-cover.png -->
+    <img class="cover" alt="Curious Mind of Adeline book cover"
+         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 210 175'%3E%3Crect width='210' height='175' fill='%23FBF1DE'/%3E%3C!-- colorful monster --%3E%3Cpath d='M55 165 C30 160 25 120 35 90 C42 65 55 40 80 38 C105 36 118 60 122 90 C127 125 118 160 95 165 Z' fill='%23e94f4f'/%3E%3Cpath d='M50 150 C38 130 40 95 50 75 C60 55 78 48 95 55 C112 62 116 95 112 120 C108 145 95 158 75 158 Z' fill='%234f8fe9'/%3E%3Cpath d='M60 140 C52 122 55 95 65 80 C75 65 90 62 100 72 C110 82 108 110 102 128 C96 146 82 150 70 148 Z' fill='%2355c06a'/%3E%3Cpath d='M68 128 C63 115 66 96 74 86 C82 76 92 76 98 86 C104 96 100 116 94 126 C88 136 76 136 68 128 Z' fill='%23f0c94a'/%3E%3Cellipse cx='68' cy='78' rx='9' ry='11' fill='%23241f1c'/%3E%3Cellipse cx='96' cy='76' rx='9' ry='11' fill='%23241f1c'/%3E%3Cpath d='M58 110 Q80 132 104 108 Q100 128 80 130 Q62 128 58 110 Z' fill='%23241f1c'/%3E%3C!-- girl --%3E%3Ccircle cx='163' cy='72' r='16' fill='%23f2d3b6'/%3E%3Cpath d='M147 66 C145 50 158 44 165 46 C176 42 182 56 179 68 C176 58 168 54 163 56 C155 54 149 58 147 66 Z' fill='%237a5236'/%3E%3Ccircle cx='157' cy='72' r='2' fill='%23241f1c'/%3E%3Ccircle cx='169' cy='72' r='2' fill='%23241f1c'/%3E%3Cpath d='M159 80 Q163 83 167 80' stroke='%23241f1c' stroke-width='1.5' fill='none'/%3E%3Cpath d='M150 90 L176 90 L178 122 L148 122 Z' fill='%2388c47e'/%3E%3Cpath d='M148 98 Q163 108 178 98 L178 104 Q163 112 148 104 Z' fill='%2370a868'/%3E%3Cpath d='M149 122 L177 122 L180 140 L146 140 Z' fill='%23f0c94a'/%3E%3Crect x='153' y='140' width='6' height='22' fill='%23f2d3b6'/%3E%3Crect x='167' y='140' width='6' height='22' fill='%23f2d3b6'/%3E%3Cellipse cx='156' cy='165' rx='7' ry='4' fill='%23241f1c'/%3E%3Cellipse cx='170' cy='165' rx='7' ry='4' fill='%23241f1c'/%3E%3C/svg%3E">
+    <div class="book-title">Curious Mind of Adeline</div>
+    <a class="btn" href="https://www.amazon.com" target="_blank" rel="noopener">Amazon</a>
+  </aside>
+
+  <!-- ======== Author photo ======== -->
+  <!-- REPLACE the src below with your real photo, e.g. images/caitlin.jpg -->
+  <img class="author-photo" alt="Caitlin Galietti sitting outdoors next to a frog statue reading a book"
+       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Crect width='260' height='260' fill='%23b9a58c'/%3E%3Ccircle cx='165' cy='95' r='34' fill='%23f2d3b6'/%3E%3Cpath d='M131 88 C128 60 152 48 166 52 C184 48 202 64 198 92 C192 76 178 70 165 72 C150 70 137 76 131 88 Z' fill='%234a3626'/%3E%3Cpath d='M125 240 C122 180 138 138 166 136 C194 138 208 180 206 240 Z' fill='%23a9a2b8'/%3E%3C!-- frog statue --%3E%3Cpath d='M20 250 C14 200 26 160 58 152 C92 144 112 172 112 210 L110 250 Z' fill='%233f7d4e'/%3E%3Ccircle cx='44' cy='152' r='14' fill='%233f7d4e'/%3E%3Ccircle cx='86' cy='148' r='14' fill='%233f7d4e'/%3E%3Ccircle cx='44' cy='150' r='5' fill='%23241f1c'/%3E%3Ccircle cx='86' cy='146' r='5' fill='%23241f1c'/%3E%3Cpath d='M40 190 L92 178 L96 208 L46 220 Z' fill='%23b03a30'/%3E%3C/svg%3E">
+
+  <!-- ======== Bio panel ======== -->
+  <section class="bio-panel">
+    <p>Caitlin lives in Virginia with her family and assortment of pets. An avid
+       reader, she hopes to write stories for people of all ages to get lost in.</p>
+    <a class="btn" href="#" >Newsletter</a>
+  </section>
+
+  <!-- ======== Decorative teal dashes ======== -->
+  <svg class="dashes left" viewBox="0 0 120 90" aria-hidden="true">
+    <g stroke="#A7D5C6" stroke-width="7" stroke-linecap="round">
+      <line x1="10" y1="70" x2="30" y2="55"/>
+      <line x1="35" y1="82" x2="55" y2="67"/>
+      <line x1="40" y1="45" x2="60" y2="30"/>
+      <line x1="65" y1="58" x2="85" y2="43"/>
+      <line x1="72" y1="25" x2="92" y2="12"/>
+    </g>
+  </svg>
+
+  <svg class="dashes right" viewBox="0 0 120 90" aria-hidden="true">
+    <g stroke="#A7D5C6" stroke-width="7" stroke-linecap="round">
+      <line x1="15" y1="30" x2="35" y2="45"/>
+      <line x1="45" y1="15" x2="65" y2="30"/>
+      <line x1="55" y1="55" x2="75" y2="70"/>
+      <line x1="80" y1="35" x2="100" y2="50"/>
+      <line x1="88" y1="70" x2="108" y2="83"/>
+    </g>
+  </svg>
+
+</div>
+
+</body>
+</html>
