@@ -77,19 +77,22 @@ h1.author-name {
 }
 
 .book-card .cover {
-  width: 210px;
+  width: 175px;              /* the cover is square */
   height: 175px;
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(58, 42, 26, 0.22);
 }
 
 .book-card .book-title {
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 500;
+  line-height: 1.2;
   color: var(--ink);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 /* ---------- Pill buttons ---------- */
@@ -116,6 +119,7 @@ h1.author-name {
   width: 250px;
   height: 250px;
   object-fit: cover;
+  object-position: 50% 30%;  /* keeps both faces (Caitlin + frog) in frame */
   border-radius: 48% 52% 55% 45% / 50% 46% 54% 50%;
   z-index: 4;
 }
@@ -123,7 +127,7 @@ h1.author-name {
 /* ---------- Bio panel ---------- */
 .bio-panel {
   position: relative;
-  margin-top: 185px;   /* leaves orange showing between the book card and this panel */
+  margin-top: 205px;   /* leaves orange showing between the book card and this panel */
   margin-left: 48px;
   background: var(--cream);
   border-radius: 34px;
@@ -219,19 +223,17 @@ h1.author-name {
 
   <!-- ======== Book card ======== -->
   <aside class="book-card">
-    <!-- REPLACE the src below with your real book-cover image, e.g. images/adeline-cover.png -->
-    <img class="cover" alt="Curious Mind of Adeline book cover"
-         src="adeline.png"
-       >
-    <div class="book-title">Curious Mind of Adeline</div>
-    <a class="btn" href="https://www.amazon.com/dp/B0DXDGNHKG?lv=shuf&channelId=500&plpRedirect=mhFallback&th=1" target="_blank" rel="noopener">Amazon</a>
+    <!-- Book cover image: adeline.jpg (must sit in the same folder as this file) -->
+    <img class="cover" alt="The Curious Mind of Adeline book cover"
+         src="adeline.jpg" width="175" height="175">
+    <div class="book-title">The Curious Mind of Adeline</div>
+    <a class="btn" href="https://www.amazon.com/dp/B0DXDGNHKG" target="_blank" rel="noopener">Amazon</a>
   </aside>
 
   <!-- ======== Author photo ======== -->
-  <!-- REPLACE the src below with your real photo, e.g. images/caitlin.jpg -->
+  <!-- Author photo: me.jpg (must sit in the same folder as this file) -->
   <img class="author-photo" alt="Caitlin Galietti sitting outdoors next to a frog statue reading a book"
-       src="me.png"
-     >
+       src="me.jpg" width="250" height="250">
 
   <!-- ======== Bio panel ======== -->
   <section class="bio-panel">
